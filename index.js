@@ -73,7 +73,7 @@ async function checkRunner({ token, owner, repo, primaryRunnerLabels, fallbackRu
     const groupId = await getRunnerGroupId({ org: owner, runnerGroupName: runnerGroup, token });
     const foundGroupRunner = await listRunnersInGroup({ org: owner, runnerGroupId: groupId, token });
     if (foundGroupRunner.length > 0) {
-      console.log(`Found ${foundGroupRunner.length} runners for ${groupId}`);
+      core.info(`Found ${foundGroupRunner.length} runners for ${groupId}`);
       // useRunner = foundGroupRunner.map(runner => runner.name)[0];
     }
   }
