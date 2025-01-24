@@ -69,7 +69,7 @@ async function checkRunner({ token, owner, repo, primaryRunnerLabels, fallbackRu
     }
   }
 
-  core.info('Runner group:', runnerGroup);
+  core.info(`Runner group: ${runnerGroup}`);
   if (!primaryIsOnline && runnerGroup) {
     const groupId = await getRunnerGroupId({ org: owner, runnerGroupName: runnerGroup, token });
     const foundGroupRunner = await listRunnersInGroup({ org: owner, runnerGroupId: groupId, token });
@@ -104,8 +104,8 @@ async function main() {
       return;
     }
 
-    core.info(`Primary runner is online: ${primaryIsOnline}`);
-    core.info(`Using runner: ${useRunner}`);
+    core.info(`Primary runner is online: ${primaryIsOnline}.`);
+    core.info(`Using runner: ${useRunner}.`);
 
     core.setOutput('use-runner', useRunner);
   } catch (error) {
