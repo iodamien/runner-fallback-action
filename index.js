@@ -71,7 +71,11 @@ async function checkRunner({ token, owner, repo, primaryRunnerLabels, fallbackRu
 
   if (!primaryIsOnline && runnerGroup) {
     const groupId = await getRunnerGroupId({ org: owner, runnerGroupName: runnerGroup, token });
-    useRunner = await listRunnersInGroup({ org: owner, runnerGroupId: groupId, token });
+    const foundGroupRunner = await listRunnersInGroup({ org: owner, runnerGroupId: groupId, token });
+    if (foundGroupRunner.length > 0) {
+      console.log(`Found ${foundGroupRunner.length} runners for ${groupId}`);
+      // useRunner = foundGroupRunner.map(runner => runner.name)[0];
+    }
   }
 
   // return a JSON string so that it can be parsed using `fromJson`, e.g. fromJson('["self-hosted", "linux"]')
