@@ -69,6 +69,7 @@ async function checkRunner({ token, owner, repo, primaryRunnerLabels, fallbackRu
     }
   }
 
+  core.info('Runner group:', runnerGroup);
   if (!primaryIsOnline && runnerGroup) {
     const groupId = await getRunnerGroupId({ org: owner, runnerGroupName: runnerGroup, token });
     const foundGroupRunner = await listRunnersInGroup({ org: owner, runnerGroupId: groupId, token });
